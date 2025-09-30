@@ -1,0 +1,37 @@
+polygon
+ipython
+pyyaml>=5.1
+# Core scientific stack
+numpy
+pandas
+matplotlib
+pillow
+
+# Computer vision & deep learning
+opencv-python
+torch
+torchvision
+
+# Utilities
+tqdm
+
+tensorboard
+# COCO tools (official package now provides Windows wheels)
+pycocotools>=2.0.7
+pyclipper
+# Polygon3 is removed (not used in code and causes build issues on Windows)
+colorlog
+# Use pylsd-nova on Windows, keep ocrd-fork-pylsd elsewhere
+pylsd-nova; platform_system=="Windows"
+ocrd-fork-pylsd; platform_system!="Windows"
+einops
+prefetch_generator
+imgaug
+lmdb
+transformers
+torchnet
+gdown
+webcolors
+# pandas_profiling is deprecated; use ydata-profiling instead
+ydata-profiling
+scikit-learn
