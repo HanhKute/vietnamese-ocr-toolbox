@@ -1,3 +1,5 @@
+pylsd
+scipy
 polygon
 ipython
 pyyaml>=5.1
@@ -23,7 +25,7 @@ pyclipper
 colorlog
 # Use pylsd-nova on Windows, keep ocrd-fork-pylsd elsewhere
 pylsd-nova; platform_system=="Windows"
-ocrd-fork-pylsd; platform_system!="Windows"
+ocrd-fork-pylsd==0.0.3; platform_system!="Windows"
 einops
 prefetch_generator
 imgaug

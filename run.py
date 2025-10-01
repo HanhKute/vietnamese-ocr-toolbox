@@ -47,7 +47,7 @@ class Pipeline:
     def make_cache_folder(self):
         self.cache_folder = os.path.join(args.output, 'cache')
         os.makedirs(self.cache_folder,exist_ok=True)
-        self.preprocess_cache = os.path.join(self.cache_folder, "preprocessed.jpg")
+        # self.preprocess_cache = os.path.join(self.cache_folder, "preprocessed.jpg")
         self.detection_cache = os.path.join(self.cache_folder, "detected.jpg")
         self.crop_cache = os.path.join(self.cache_folder, 'crops')
         os.makedirs(self.crop_cache, exist_ok=True)
@@ -61,10 +61,10 @@ class Pipeline:
         self.ocr_model = OCR(
             config_path=self.ocr_config,
             weight_path=self.ocr_weight)
-        self.preproc = Preprocess(
-            det_model=self.det_model,
-            ocr_model=self.ocr_model,
-            find_best_rotation=self.find_best_rotation)
+        # self.preproc = Preprocess(
+        #     det_model=self.det_model,
+        #     ocr_model=self.ocr_model,
+        #     find_best_rotation=self.find_best_rotation)
   
         if self.dictionary_path is not None:
             self.dictionary = {}
@@ -87,14 +87,14 @@ class Pipeline:
 
     def start(self, img):
         # Document extraction
-        img1 = self.preproc(img)
+        # img1 = self.preproc(img)
 
         if self.debug:
-            saved_img = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)
-            cv2.imwrite(self.preprocess_cache, saved_img)
+            # saved_img = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)
+            # cv2.imwrite(self.preprocess_cache, saved_img)
 
             boxes, img2  = self.det_model(
-                img1,
+                img,
                 crop_region=True,
                 return_result=True,
                 output_path=self.cache_folder)
@@ -102,7 +102,7 @@ class Pipeline:
             cv2.imwrite(self.detection_cache, saved_img)
         else:
             boxes = self.det_model(
-                img1,
+                img,
                 crop_region=True,
                 return_result=False,
                 output_path=self.cache_folder)
@@ -120,7 +120,7 @@ class Pipeline:
             preds, probs = None, None
 
         visualize(
-          img1, boxes, texts, 
+          img, boxes, texts,
           img_name = self.final_output, 
           class_mapping = self.class_mapping,
           labels = preds, probs = probs, 

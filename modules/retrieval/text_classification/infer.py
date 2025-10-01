@@ -69,7 +69,7 @@ class PhoBERT:
             tmp_path = os.path.join(CACHE_DIR, "bert_weight.pth")
             download_pretrained_weights("phobert_mcocr", tmp_path)
             weight_path = tmp_path
-        meta_data = torch.load(weight_path, map_location=torch.device('cpu'))
+        meta_data = torch.load(weight_path)
         self.cfg = meta_data["config"]
         model_state = meta_data["model_state_dict"]
 
